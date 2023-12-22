@@ -1,50 +1,67 @@
-import BlueTest from "../assets/blue2.png"
-import Eat from "../assets/Food.png"
-import ReviewImg from "../assets/Image quest.png"
+import {Question} from "../types/Question.ts";
+import First from "../assets/img/Food.png"
+import Second from "../assets/img/true.png"
 
-export async function GetQuestDescription(): Promise<QuestDescription[]> {
+// export type Question = {
+//     imagePath: string,
+//     hints: string[],
+//     answers: Answer[]
+// }
+//
+
+// export type Answer = {
+//     text: string,
+//     correct: boolean
+// }
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function GetQuestion(difficultId: number): Promise<Question[]> {
+    console.log("difficultId: " + difficultId);
     return [
         {
-            imageUrl: BlueTest,
-            header: "Тайны синей ветки: ключ к загадкам метрополитена",
-            time: "60 мин",
-            places: "7 станций метро",
-            start_point: "станция метро “Электросила”",
-            fires: 2
+            imagePath : First,
+            hints: ["abas", "abas2", "abas4"],
+            answers: [
+                {
+                    text: "aaaa",
+                    correct: true
+                },
+                {
+                    text: "bbbb",
+                    correct: true
+                },
+                {
+                    text: "cccc",
+                    correct: false
+                },
+                {
+                    text: "dddd",
+                    correct: false
+                }
+            ]
         },
         {
-            imageUrl: Eat,
-            header: "Гастрономический квест по Санкт-Петербургу",
-            time: "60 мин",
-            places: "6 ключевых точек",
-            start_point: "Дворцовая набережная",
-            fires: 1
-        },
-    ]
-}
-
-export async function GetReviews(): Promise<Review[]> {
-    return [
-        {
-            rating: 4.5,
-            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            author: "A. Hvost",
-            quest: "#quest",
-            image: ReviewImg
-        },
-        {
-            rating: 3.2,
-            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            author: "A. Zabashta",
-            quest: "#quest",
-            image: ReviewImg
-        },
-        {
-            rating: 5.0,
-            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            author: "G. Kruglov",
-            quest: "#quest",
-            image: ReviewImg
+            imagePath : Second,
+            hints: ["aboba", "boba"],
+            answers: [
+                {
+                    text: "aaaa2",
+                    correct: true
+                },
+                {
+                    text: "bbbb2",
+                    correct: true
+                },
+                {
+                    text: "cccc2",
+                    correct: false
+                },
+                {
+                    text: "dddd2",
+                    correct: false
+                }
+            ]
         }
+
     ]
 }
