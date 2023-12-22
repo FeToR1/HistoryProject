@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+*{
+    font-family: 'Inter', sans-serif;
+}
+
+.full-height{
+    min-height: calc(100vh - 56px);
+}
+
+img{
+    max-width: 100vw;
+}
+.row.display-flex {
+     display: flex;
+     flex-wrap: wrap;
+ }
+.row.display-flex > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 992px) {
+    .background-size{
+        background-position-x: 70%;
+    }
+}
+
+.text-purple{
+    color: #5227CC;
+}
