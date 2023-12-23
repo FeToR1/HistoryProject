@@ -2,7 +2,7 @@ import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {GetQuestion} from "../api/quests.ts";
 import {Question} from "../types/Question.ts";
-import {MAX_SCORE, MAX_STEPS} from "../config.ts";
+import {MAX_SCORE, MAX_STEPS, URL_MEDIA} from "../config.ts";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import {Modal as BootstrapModal} from "bootstrap/dist/js/bootstrap.bundle.min.js"
@@ -129,8 +129,11 @@ export default function () {
                                             <br/> Баллы: {score}</div>
                                         <div className="">За решение вы получите {maxScore} баллов</div>
                                         <div className="d-flex justify-content-center mt-5">
-                                            <img src={questions[currentChoice].imagePath} alt={"some went wrong"}
-                                                 className={"mw-100"}/>
+                                            <img src={URL_MEDIA+questions[currentChoice].imagePath} alt={"some went wrong"}
+                                                 className={"mw-100"}
+                                                 style={{
+                                                     maxHeight: "500px",
+                                                 }}/>
                                         </div>
                                         {
                                             hintsNumber > 0 ? (
@@ -150,7 +153,7 @@ export default function () {
                                             {
                                                 questions[currentChoice].answers.map((el, index) => {
                                                     return (
-                                                        <div className={"col-4 d-flex justify-content-center my-2"}
+                                                        <div className={"col-lg-4 d-flex justify-content-center my-2"}
                                                              key={index}>
                                                             <div className="form-check fs-4">
                                                                 <input className={`form-check-input`}
@@ -173,8 +176,8 @@ export default function () {
                                                 })
                                             }
                                         </div>
-                                        <div className={"d-flex justify-content-center mt-5"}>
-                                            <button className={"btn btn-primary btn-lg me-3"}
+                                        <div className={"d-flex justify-content-center flex-lg-row flex-column mt-5"}>
+                                            <button className={"btn btn-primary btn-lg me-3 mt-3"}
                                                     onClick={() => {
                                                         if (hintsNumber + 1 <= questions[currentChoice].hints.length) {
                                                             if (maxScore > 1) {
@@ -185,7 +188,7 @@ export default function () {
                                                         }
                                                     }}> Подсказка
                                             </button>
-                                            <button className={"btn btn-primary btn-lg me-3"}
+                                            <button className={"btn btn-primary btn-lg me-3 mt-3"}
                                                     onClick={() => {
                                                         if (answers.filter(x => x).length === 2) {
                                                             CheckAnswers()
@@ -196,7 +199,7 @@ export default function () {
 
                                                     }}>Проверить ответы
                                             </button>
-                                            <button className={"btn btn-primary btn-lg me-3"}
+                                            <button className={"btn btn-primary btn-lg me-3 mt-3"}
                                                     onClick={() => {
                                                         GoNext()
                                                     }}>Пропустить

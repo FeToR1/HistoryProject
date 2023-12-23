@@ -1,13 +1,14 @@
-import {Outlet} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
+import Logo from "./assets/Bo.svg"
 
 function App() {
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-primary navbar-dark">
                 <div className="container-fluid">
-                    <a className="navbar-brand my-4" href="#">
-                        Abas
-                    </a>
+                    <Link className="navbar-brand my-2" to={"/"}>
+                        <img src={Logo} alt="Logo" width="50" height="50" className="d-inline-block align-text-top"/>
+                    </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
