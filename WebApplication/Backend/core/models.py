@@ -39,34 +39,32 @@ class Hints(Model):
 
 
 class Pictures(Model):
-    question = models.ForeignKey(Questions, null=True, on_delete=models.SET_NULL)
+    question = models.OneToOneField(Questions, null=True, on_delete=models.SET_NULL)
 
-    name = models.CharField(max_length=256)
-    author = models.CharField(max_length=256)
     dir = models.ImageField(upload_to="pictures")
 
     def __str__(self):
-        return f"{self.id}: {self.question=}: {self.name=} {self.author=} {self.dir=}"
+        return f"{self.id}: {self.question=}: {self.dir=}"
 
     def __iter__(self):
         yield "id", self.id
         yield "question_id", self.question.id
-        yield "name", self.name
-        yield "author", self.author
         yield "dir", "/media/" + self.dir.name
 
 
 class Answers(Model):
     question = models.ForeignKey(Questions, on_delete=models.CASCADE)  # cascade??
 
-    name = models.ForeignKey(Pictures, on_delete=models.CASCADE)
+    name = models.CharField(max_length=256)
+    author = models.CharField(max_length=256)
     is_correct = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.id}: {self.question=}: {self.name=} {self.is_correct=}"
+        return f"{self.id}: {self.question=}: {self.name=} {self.author=} {self.is_correct=}"
 
     def __iter__(self):
         yield "id", self.id
         yield "question_id", self.question.id
         yield "name", self.name
+        yield "author", self.author
         yield "is_correct", self.is_correct

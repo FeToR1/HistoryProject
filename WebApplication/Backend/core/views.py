@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Markers, Questions, Hints, Pictures, Answers
+from .models import *
 import json
 
 
@@ -9,12 +9,12 @@ def JsonResponse(obj):
         content_type="application/json")
 
 
-def ListJson(obj):
+def ListDict(obj):
     return list(map(dict, obj))
 
 
 def ListJsonResponse(obj):
-    return JsonResponse(list(map(dict, obj)))
+    return JsonResponse(ListDict(obj))
 
 
 def test(request):
@@ -42,10 +42,15 @@ def GetAnswers(request, question_id):
 
 
 def GetQuestionsByMarker(request, marker_id):
-    questions_id = list(map(lambda x: x["id"], ListJson(Questions.objects.filter(marker_id=marker_id))))
-    questions = list(map(lambda x: dict(x), Questions.objects.filter(marker_id=marker_id)))
-    for i in range(len(questions)):
-        questions[i]["hints"] = ListJson(Hints.objects.filter(question_id=questions_id[i]))
-        questions[i]["answers"] = ListJson(Answers.objects.filter(question_id=questions_id[i]))
-        questions[i]["pictures"] = ListJson(Pictures.objects.filter(question_id=questions_id[i]))
-    return JsonResponse(questions)
+    return JsonResponse([{
+        "imagePath": a[0]["dir"] if (a := ListDict(Pictures.objects.filter(question_id=question.id))) else None,
+        "hints": [hint.text for hint in Hints.objects.filter(question_id=question.id)],
+        "answers": [
+            {
+                "text": answer.name,
+                "correct": answer.is_correct
+            } for answer in Answers.objects.filter(question_id=question.id)
+        ]
+    }
+        for question in Questions.objects.filter(marker_id=marker_id)
+    ])
