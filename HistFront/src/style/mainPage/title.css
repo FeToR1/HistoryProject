@@ -1,0 +1,24 @@
+.title{
+    font-size: 64px;
+    width: 37vw;
+    margin-left: 16vw;
+    padding-top: 26vh;
+    margin-bottom: 8vh;
+}
+.button-title{
+    border-radius: 0.94rem;
+    margin-left: 16vw;
+    padding: 1rem 1.5rem!important;
+}
+
+@media screen and (max-width: 992px) {
+    .title{
+        font-size: 1.5rem;
+        width: 100vw;
+        text-align: center;
+        margin-left: 0;
+        padding-top: 26vh;
+        margin-bottom:40vh;
+    }
+
+}
