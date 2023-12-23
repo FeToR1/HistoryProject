@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from .models import *
 import json
+from random import sample
 
 
 def JsonResponse(obj):
@@ -45,12 +46,12 @@ def GetQuestionsByMarker(request, marker_id):
     return JsonResponse([{
         "imagePath": a[0]["dir"] if (a := ListDict(Pictures.objects.filter(question_id=question.id))) else None,
         "hints": [hint.text for hint in Hints.objects.filter(question_id=question.id)],
-        "answers": [
+        "answers": sample([
             {
-                "text": answer.name,
+                "text": f"{answer.author} {answer.name}",
                 "correct": answer.is_correct
             } for answer in Answers.objects.filter(question_id=question.id)
-        ]
+        ], len(Answers.objects.filter(question_id=question.id))),
     }
         for question in Questions.objects.filter(marker_id=marker_id)
     ])

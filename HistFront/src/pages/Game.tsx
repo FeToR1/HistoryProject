@@ -153,7 +153,7 @@ export default function () {
                                             {
                                                 questions[currentChoice].answers.map((el, index) => {
                                                     return (
-                                                        <div className={"col-lg-4 d-flex justify-content-center my-2"}
+                                                        <div className={"col-lg-4 d-flex justify-content-lg-center my-2"}
                                                              key={index}>
                                                             <div className="form-check fs-4">
                                                                 <input className={`form-check-input`}
