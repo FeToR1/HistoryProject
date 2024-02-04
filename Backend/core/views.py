@@ -45,7 +45,7 @@ def GetAnswers(request, question_id):
 def GetQuestionsByMarker(request, marker_id):
     return JsonResponse([{
         "imagePath": a[0]["dir"] if (a := ListDict(Pictures.objects.filter(question_id=question.id))) else None,
-        "hints": sample(c := [hint.text for hint in Hints.objects.filter(question_id=question.id)], len(c)),
+        "hints": [hint.text for hint in Hints.objects.filter(question_id=question.id)],
         "answers": sample(b := [
             {
                 "text": f"{answer.author} {answer.name}",
