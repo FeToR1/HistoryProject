@@ -1,2 +1,2 @@
 # HistoryProject
-Ссылка на веб-сайт с тестом: http://195.133.146.71
+Ссылка на веб-сайт с тестом: [guess-the-pictures.ru](https://guess-the-pictures.ru/)
