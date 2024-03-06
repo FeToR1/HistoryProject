@@ -17,6 +17,5 @@ import {API} from "../config.ts";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GetQuestion(difficultId: number): Promise<Question[]> {
     let result = await axios.get<Question[]>(API + '/questions_by_marker/' + difficultId + "/")
-    console.log(result.data)
     return result.data
 }
